@@ -9,6 +9,7 @@
 
 以下の図は、Docker for windows でコンテナを開始した時のイメージ図です。
 （c:\docker　にいる状態で git clone した時の図です）
+
 ![環境イメージ図](/templateimage.png)
 
 
@@ -49,10 +50,11 @@ $ docker-compose stop
 $ docker-compose down
 ```
 
-##　Embedded Pythonを試す：barchat.pyを実行する迄の手順
+## Embedded Pythonを試す：barchat.pyを実行する迄の手順
 
-コンテナビルド時に、VS2021.Alcoholテーブルとグローバル変数 ^Alcohol にサンプルデータを登録しています。
-作成時に使用したコードを参照される場合は、[VS2021.Alcohol.cls](/src/VS2021/Alcohol.cls)の以下メソッドをご参照ください。
+コンテナビルド時に、VS2021.Alcohol テーブルとグローバル変数 ^Alcohol にサンプルデータを登録しています。
+
+データ作成に利用したソースコードを参照される場合は、[VS2021.Alcohol.cls](/src/VS2021/Alcohol.cls)のメソッドをご参照ください（メソッド詳細は [データ作成メソッド](### データ作成メソッド) をご参照ください）。
 
 
 ### (1) コンテナにログイン
@@ -98,10 +100,12 @@ iris session IRIS -U "TRY"
 ### (4) ObjectScript を利用して、sys.path パスを追加
 
 以下のパスを追加します。
-A) barchart.pyを動かすため、ソースコードがあるパス
-B) barchat.pyが利用している matplotlib のインストールパス
 
-Python の sys モジュールを操作するため、**%SYS.Python** クラスの **Import()** メソッドのインスタンスを作成します。
+A) barchart.py を置いているパス
+
+B) barchat.py が利用している matplotlib のインストールパス
+
+Python の **sys** モジュールを操作するため、**%SYS.Python** クラスの **Import()** メソッドを利用してモジュールをインポートしたインスタンスを作成します。
 
 ```
 set sys=##class(%SYS.Python).Import("sys")
@@ -119,7 +123,7 @@ B) のインストールパスを **sys.path** に追加します。
 do sys.path.append("/home/irisowner/.local/lib/python3.7/site-packages")
 ```
 
-他モジュールを pip3 でインストールした場合も、インストールパスを **pip3 show モジュール名** で確認し、上記手順で sys.path　に追加してから実行してください。
+他モジュールを pip3 でインストールした場合も、インストールパスを **pip3 show モジュール名** で確認し、上記手順で **sys.path**　に追加してから実行してください。
 
 
 ### (5) barchat.pyを実行する（グローバルからDataFrameを作成して実行する）
@@ -128,30 +132,30 @@ do sys.path.append("/home/irisowner/.local/lib/python3.7/site-packages")
 
 実行例は以下の通りです。
 
-1, DataFrameを作成する
+1, DataFrame を作成する
 
 ```
 set df=##class(VS2021.Alcohol).GetDFFromGlobal()
 ```
 
-2, barchart.pyをインポートする
+2, barchart.py をインポートする
 
 ```
 set bar=##class(%SYS.Python).Import("barchart")
 ```
 
-3, buildGraph()を実行する
+3, buildGraph() を実行する
 
 ```
 do bar.buildGraph(df,"/ISC/src/test1.png","Beer","LowMaltBeer")
 ```
 
-出力結果は、VSCodeのワークスペース/src/test1.png　でご確認いただけます。
+出力結果は、VSCode のワークスペース /src/test1.png でご確認いただけます。
 
 
-4, DataFrameの中身をprint()関数で参照する迄の手順
+4, DataFrame 中身を print() 関数で参照する迄の手順
 
-builtinsをインポートしてから実行します。
+builtins をインポートしてから実行します。
 ```
 set b=##class(%SYS.Python).Import("builtins")
 do b.print(df)
@@ -164,31 +168,31 @@ do b.print(df)
 
 実行例は以下の通りです。
 
-1, DataFrameを作成する
+1, DataFrame を作成する
 
 ```
 kill df
 set df=##class(VS2021.Alcohol).GetDF()
 ```
 
-2, barchart.pyをインポートする
+2, barchart.py をインポートする
 
 ```
 set bar=##class(%SYS.Python).Import("barchart")
 ```
 
-3, buildGraph()を実行する
+3, buildGraph() を実行する
 
 ```
 do bar.buildGraph(df,"/ISC/src/test2.png","beer","lowmaltbeer")
 ```
 
-出力結果は、VSCodeのワークスペース/src/test2.png　でご確認いただけます。
+出力結果は、VSCode のワークスペース /src/test2.png でご確認いただけます。
 
 
-4, DataFrameの中身をprint()関数で参照する迄の手順
+4, DataFrame の中身を print() 関数で参照する迄の手順
 
-builtinsをインポートしてから実行します。
+builtins をインポートしてから実行します。
 ```
 set b=##class(%SYS.Python).Import("builtins")
 do b.print(df)
@@ -208,6 +212,7 @@ halt
 ### データ作成メソッド
 
 テーブルデータ作成：　CreateTableData()
+
 グローバルデータ作成：　CreateGlobalData()
 
 実行例は以下の通り
@@ -235,7 +240,11 @@ do ##class(VS2021.Alcohol).CreateGlobalData()
 localhost:62773/csp/sys/UtilHome.csp　で管理ポータルを開きます。
 
 管理ポータル > システムエクスプローラ > SQL > USERネームスペースを選択 > スキーマ：Alcohol を選択 >　「プロシージャ」を展開
-ストアド名をクリックし、右画面の「プロシージャ実行」をクリックし、別画面に出る実行ボタンをクリックします。
-    VS2021.Alcohol_CreateTableData()
-    VS2021.Alcohol_CreateGlobalData()
 
+ストアド名をクリックし、右画面の「プロシージャ実行」をクリックし、別画面に出る実行ボタンをクリックします。
+
+プロシージャ名は以下の通りです。
+
+    VS2021.Alcohol_CreateTableData()
+
+    VS2021.Alcohol_CreateGlobalData()
