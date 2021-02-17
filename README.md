@@ -50,7 +50,7 @@ $ docker-compose stop
 $ docker-compose down
 ```
 
-## Embedded Pythonを試す：barchat.pyを実行する迄の手順
+## Embedded Pythonを試す：[barchart.py](/src/barchart.py) を実行する迄の手順
 
 コンテナビルド時に、VS2021.Alcohol テーブルとグローバル変数 ^Alcohol にサンプルデータを登録しています。
 
@@ -237,7 +237,8 @@ do ##class(VS2021.Alcohol).CreateGlobalData()
 
 ### データ作成ストアドプロシージャ
 
-localhost:62773/csp/sys/UtilHome.csp　で管理ポータルを開きます。
+管理ポータルを開きます。
+[localhost:62773/csp/sys/UtilHome.csp](localhost:62773/csp/sys/UtilHome.csp)
 
 管理ポータル > システムエクスプローラ > SQL > USERネームスペースを選択 > スキーマ：Alcohol を選択 >　「プロシージャ」を展開
 
@@ -246,5 +247,4 @@ localhost:62773/csp/sys/UtilHome.csp　で管理ポータルを開きます。
 プロシージャ名は以下の通りです。
 
     VS2021.Alcohol_CreateTableData()
-
     VS2021.Alcohol_CreateGlobalData()
