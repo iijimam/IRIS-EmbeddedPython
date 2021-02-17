@@ -8,7 +8,8 @@
 ## コンテナ開始後のイメージ図
 
 以下の図は、Docker for windows でコンテナを開始した時のイメージ図です。
-（c:\docker　にいる状態で git clone した時の図です）
+
+（c:\docker にいる状態で git clone した時の図です）
 
 ![環境イメージ図](templateimage.jpg)
 
@@ -54,7 +55,7 @@ $ docker-compose down
 
 コンテナビルド時に、VS2021.Alcohol テーブルとグローバル変数 ^Alcohol にサンプルデータを登録しています。
 
-データ作成に利用したソースコードを参照される場合は、[VS2021.Alcohol.cls](/src/VS2021/Alcohol.cls)のメソッドをご参照ください（メソッド詳細は [データ作成メソッド](### データ作成メソッド) をご参照ください）。
+データ作成に利用したソースコードを参照される場合は、[VS2021.Alcohol.cls](/src/VS2021/Alcohol.cls)のメソッドをご参照ください（メソッド詳細は [データ作成メソッド](#データ作成メソッド) をご参照ください）。
 
 
 ### (1) コンテナにログイン
@@ -238,7 +239,7 @@ do ##class(VS2021.Alcohol).CreateGlobalData()
 ### データ作成ストアドプロシージャ
 
 管理ポータルを開きます。
-[localhost:62773/csp/sys/UtilHome.csp](localhost:62773/csp/sys/UtilHome.csp)
+[localhost:62773/csp/sys/UtilHome.csp](http://localhost:62773/csp/sys/UtilHome.csp)
 
 管理ポータル > システムエクスプローラ > SQL > USERネームスペースを選択 > スキーマ：Alcohol を選択 >　「プロシージャ」を展開
 
