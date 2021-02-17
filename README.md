@@ -101,9 +101,9 @@ iris session IRIS -U "TRY"
 
 以下のパスを追加します。
 
-A) barchart.py を置いているパス
+A) [barchart.py](/src/barchart.py) を置いているパス
 
-B) barchat.py が利用している matplotlib のインストールパス
+B) [barchart.py](/src/barchart.py) が利用している matplotlib のインストールパス
 
 Python の **sys** モジュールを操作するため、**%SYS.Python** クラスの **Import()** メソッドを利用してモジュールをインポートしたインスタンスを作成します。
 
@@ -126,7 +126,7 @@ do sys.path.append("/home/irisowner/.local/lib/python3.7/site-packages")
 他モジュールを pip3 でインストールした場合も、インストールパスを **pip3 show モジュール名** で確認し、上記手順で **sys.path**　に追加してから実行してください。
 
 
-### (5) barchat.pyを実行する（グローバルからDataFrameを作成して実行する）
+### (5) [barchart.py](/src/barchart.py) を実行する（グローバルからDataFrameを作成して実行する）
 
 [VS2021.Alcohol](/src/VS2021/Alcohol.cls) クラスの GetDFFromGlobal メソッドを使用してDataFrameを作成します。
 
@@ -138,7 +138,7 @@ do sys.path.append("/home/irisowner/.local/lib/python3.7/site-packages")
 set df=##class(VS2021.Alcohol).GetDFFromGlobal()
 ```
 
-2, barchart.py をインポートする
+2, [barchart.py](/src/barchart.py) をインポートする
 
 ```
 set bar=##class(%SYS.Python).Import("barchart")
@@ -162,7 +162,7 @@ do b.print(df)
 ```
 
 
-### (6) barchat.pyを実行する（SQLからDataFrameを作成して実行する）
+### (6) [barchart.py](/src/barchart.py) を実行する（SQLからDataFrameを作成して実行する）
 
 [VS2021.Alcohol](/src/VS2021/Alcohol.cls) クラスの GetDF() メソッドを使用してDataFrameを作成します。
 
@@ -175,7 +175,7 @@ kill df
 set df=##class(VS2021.Alcohol).GetDF()
 ```
 
-2, barchart.py をインポートする
+2, [barchart.py](/src/barchart.py) をインポートする
 
 ```
 set bar=##class(%SYS.Python).Import("barchart")
